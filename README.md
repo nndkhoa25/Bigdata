@@ -51,3 +51,6 @@ Stop the services with `Ctrl+C`; use `docker compose down` to stop them in the b
 - `notebooks/03_sentiment_trends.ipynb`: VADER sentiment and time/community trends.
 
 The Kaggle API token belongs in Google Colab Secrets under `KAGGLE_API_TOKEN`, not in this repository.
+
+## Persistent Colab data
+The Colab notebooks mount Google Drive and store raw/processed files under `MyDrive/RedditProject/data/`. Run `02_etl.ipynb` again after a runtime reset if its output Parquet is missing; outputs stored on Drive persist across Colab sessions.
