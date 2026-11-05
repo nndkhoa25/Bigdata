@@ -1,0 +1,17 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+.kaggle/
+kaggle.json
+
+# Downloaded and processed datasets (keep large/user data out of Git)
+data/raw/
+data/processed/
+
+# Python and notebook runtime files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
