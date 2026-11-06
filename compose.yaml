@@ -17,6 +17,19 @@ services:
     stdin_open: true
     tty: true
 
+  reddit-dashboard:
+    build: .
+    container_name: reddit-dashboard
+    command: ["streamlit", "run", "src/dashboard.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    ports:
+      - "127.0.0.1:8501:8501"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    environment:
+      REDDIT_DATA_DIR: /workspace/data/processed
+    restart: unless-stopped
+
   minio:
     image: quay.io/minio/minio:RELEASE.2025-09-06T17-38-46Z
     container_name: reddit-minio

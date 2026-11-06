@@ -45,10 +45,30 @@ df.head()
 
 Stop the services with `Ctrl+C`; use `docker compose down` to stop them in the background. Data in `minio_data` persists. `docker compose down -v` permanently removes that volume.
 
+
+## Interactive dashboard
+
+The Streamlit dashboard summarizes the sentiment and V2 topic outputs without loading the full post corpus. Put these CSVs in `data/processed/` (download them from `MyDrive/RedditProject/data/processed/`):
+
+- `sentiment_monthly.csv`
+- `sentiment_by_subreddit.csv`
+- `topic_monthly_counts_v2.csv`
+- `topic_subreddit_counts_v2.csv`
+
+Start the dashboard with Docker Compose:
+
+```powershell
+docker compose up --build reddit-dashboard
+```
+
+Open http://localhost:8501. The dashboard offers month and subreddit filters, monthly volume/sentiment charts, and topic summaries. Missing months remain gaps in the time chart. Topic 0 is shown as a broad mixed group, and topic 8 as a repeated-link group; treat topic shares as exploratory.
+
 ## Project notebooks
 - `notebooks/01_data_audit.ipynb`: download and profile Kaggle source data.
 - `notebooks/02_etl.ipynb`: clean the Reddit posts and write Parquet.
 - `notebooks/03_sentiment_trends.ipynb`: VADER sentiment and time/community trends.
+- `notebooks/04_topic_model.ipynb`: TF-IDF + NMF topic exploration.
+- `src/dashboard.py`: interactive Streamlit dashboard.
 
 The Kaggle API token belongs in Google Colab Secrets under `KAGGLE_API_TOKEN`, not in this repository.
 
